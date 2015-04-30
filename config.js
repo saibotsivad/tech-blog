@@ -1,7 +1,7 @@
 noddityConfig = {
-	title: 'Noddity',
+	title: 'eDataSource Engineering',
 	noddityRoot: window.location.pathname + 'content/',
-	editLink: 'https://github.com/TehShrike/noddity/edit/master/content/',
+	editLink: 'https://github.com/edatasource/tech-blog/edit/gh-pages/content/',
 	logo: 'logo.svg',
 	errorPage: '404.md',
 	pathPrefix: '#!/',
