@@ -1,5 +1,5 @@
 title: Getting JRebel to work while testing with Swagger
-date: Thu Apr 30 2015 13:23:22 GMT-0500 (CDT)
+date: Thu Jul 09 2015 15:48:54 GMT-0500 (CDT)
 author: Andrew Smith
 
 While installing Swagger I found it very frustrating that I was having to rebuild the container and restart all the time (even with JRebel running).  Also it was very confusing to have to add 4 different servlets to my web.xml in order to get the configs set up correctly.  What follows is what I did to get pure realtime editing with auto deployment using swagger-jersey2 1.5.3-M1
