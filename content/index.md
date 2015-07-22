@@ -8,7 +8,7 @@ Our team of developers put together this blog because we want to share the cool 
 Meet our team:
 
 * [Chris Adams](https://github.com/cadams500)
-* [Brandon Glesman](https://github.com/brandonglesmann)
+* [Brandon Glesmann](https://github.com/brandonglesmann)
 * [Randy Wallace](https://github.com/randywallace)
 * [Tobias Davis](https://github.com/saibotsivad)
 * [Josh Duff](https://github.com/TehShrike)
