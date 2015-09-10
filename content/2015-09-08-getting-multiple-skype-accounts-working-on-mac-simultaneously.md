@@ -17,7 +17,10 @@ this [Superuser post](http://superuser.com/questions/271646/multiple-skype-clien
 ## Step 1
 
 1. Track down `Automator`.  You can find this application either buried in the `Other` Folder in the Launchpad or via Spotlight.
-2. When asked to `Choose a type for your document`, Select `Application`.
+
+![Automator Image](/content/assets/skype-screenshot-automator.png)
+
+2. When asked to `Choose a type for your document`, select `Application`.
 
 ## Step 2
 
@@ -41,8 +44,12 @@ nohup open -na /Applications/Skype.app --args -DataPath "${DATA_PATH}" > /dev/nu
 
 exit 0
 ```
-4. At the bottom of the action window for `Run Shell Script` is an `Options` button.  Select that and check the box labeled `Ignore this action's input`.
+4. At the bottom of the action window for `Run Shell Script` is an `Options` button.  Select that and check the box labeled `Ignore this action's input`.  It should look like this when you're done:
+
+![Run Shell Script Image](/content/assets/skype-screenshot-run-shell-script.png)
+
 5. Save!
+
 
 ## Step 4
 
@@ -52,7 +59,8 @@ shortcut to use.  In this case, I logged into my personal Skype account.
 
 ## Step 5 (optional)
 
-In this step, you're going to copy the Skype Icon from the Primary Skype application to your new Automator Application.
+In this step, you're going to copy the Skype Icon from the Primary Skype application to your new Automator Application.  Also, you can refer to this 
+[Macworld Article](http://www.macworld.co.uk/how-to/mac-software/how-change-os-x-yosemites-icons-3597494/) for more elaborate instructions (with screenshots).
 
 1. Open up the System Applications folder in Finder.
 2. Right click on the Skype Application Icon and select `Get Info`.
@@ -62,6 +70,8 @@ point, hit copy (Edit => Copy or CMD+C).
 5. Now, click *that* application icon in the top left (the automator) until it changes, *then* hit paste.  You should see the Automator turn into a Skype logo.
 
 ## Finishing up
+
+![Final Image](/content/assets/skype-screenshot-final.png)
 
 Well, that about wraps it up.  This has worked great for me, and I hope it does for you too.  Just create as many of these Automator Applications as you need, each with different `CUSTOM_SKYPE_DATA_FOLDER_NAME`'s and File Names, and 
 you should be able to run them all simultaneously.  Keep an eye on your resources though, I don't know what the fallout is from running more than 2 copies of Skype simultaneously!
