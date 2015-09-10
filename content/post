@@ -1,9 +1,9 @@
 title: Post template
 markdown: false
 
-{{#editLink}}
+<!--{{#editLink}}
 	<div id="edit-post-link"><a href="{{editLink}}{{current}}">Edit this post</a></div>
-{{/editLink}}
+{{/editLink}}-->
 
 <div id="sidebar">
 	<a href="./#!/">
@@ -24,6 +24,9 @@ markdown: false
 		<div>
 			{{#metadata.title}}
 				<h1>{{metadata.title}}</h1>
+				{{#if metadata.author}}
+					<i>by {{metadata.author}}</i>
+				{{/if}}
 			{{/metadata.title}}
 			<div class="post-content">
 				{{{html}}}
