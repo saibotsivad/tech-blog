@@ -2,7 +2,7 @@ title: Making an autocomplete search that doesn't suck
 date: Tue Feb 09 2016 15:25:43 GMT-0600 (CST)
 author: Josh Duff
 
-We index emails related to (as of February 2016) about 27m domains, 4m brands, and 50k companies.  It's important that our customers be able to easily bring up the domain or brand they care about.
+We index emails related to (as of February 2016) about 27m domains, 4m brands, and over 50k companies.  It's important that our customers be able to easily bring up the domain or brand they care about.
 
 We use search dropdowns with results coming from ElasticSearch in the back-end.  In the early days of our app, people would have difficulties finding some domains or company names - you couldn't easily find companies with periods or dashes in their name, and short domain names or some awkward subdomains.
 
@@ -10,7 +10,7 @@ This is how we made our autocomplete searches excellent.
 
 # Searching
 
-So we have indexes of domain names and company names.  There are two ways to determine what results you get back for a user's search string: filtering down to matching results, and then ordering the remaining list so that the most relevant are at the top.
+So we have indexes of domain names and company names.  There are steps in determining what results you get back for a user's search string: filtering down to matching results, and then ordering the remaining list so that the most relevant are at the top.
 
 <img src="content/image/brand-autocomplete.png" width="195" height="203">
 
@@ -24,7 +24,7 @@ What people expect, at least in our autocomplete dropdowns, is that their string
 
 # Ordering
 
-Originally we were doing pretty liberal matching of search terms, and would try to filter out the irrelevant ones by ordering based on match strength.  This did not work well.
+Originally we were doing pretty liberal matching of search terms, and would try to filter out the irrelevant ones by ordering based on match strength.
 
 For example: searching for "amazon email" would match email.amazon.com, but it would also match amazon.com.  We would order by the ElasticSearch score in order to get email.amazon.com to rank higher than amazon.com for that search string.
 
@@ -54,9 +54,9 @@ groupQuery.should(QueryBuilders.termQuery("alphanumName", stripNonAlphanum(query
 
 # Matching
 
-As you can see from the code snippet above, there is only one query that result sets `must` match, hidden behind the enigmatic `tokenize` and `makeQuery` methods.
+As you can see from the code snippet above, there is only one query that result sets `must` match, hidden behind the enigmatic `tokenize` and `makeQuery` methods.  Those methods have to do the work to take our input query text and turn it into query text that can be used against our ngram analyzed data.
 
-Most of what it does is make sure our query best fits our ngram analyszed data.  Since we only index ngrams between 2 and 10 characters, by default searching for "professional network" would only return matches for "network" - "professional" has 12 characters, and would not match any indexed tokens.
+Since we only index ngrams between 2 and 10 characters, querying for "professional network" would only match "network" - since "professional" has 12 characters, it would not match any indexed tokens.
 
 So we emulate what our `ngram_2_10` tokenizer and `alphanum` filters do in ElasticSearch (splitting into tokens on whitespace, filtering out special characters), and then break up any long words into tokens that we can actually search by.
 
@@ -71,6 +71,5 @@ All of the other optional queries are there for scoring purposes only, to hopefu
 So this is how we made our dropdown searches pretty useful:
 
 1. toss our best metric for "useful to users" into the index and sort results by that
-2. use ngram matching to find matches at any point in the word
-	a. manually tokenize searches before sending them to ElasticSearch so they will find ngram matches
+2. use ngram matching to find matches at any point in the word (and manually tokenize searches before sending them to ElasticSearch so they will find ngram matches)
 3. add in some helper boosts to make edge-case searching more likely to be useful
