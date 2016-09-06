@@ -1,6 +1,9 @@
+---
 title: Making an autocomplete search that doesn't suck
 date: Tue Feb 09 2016 15:25:43 GMT-0600 (CST)
 author: Josh Duff
+layout: post
+---
 
 We index emails related to (as of February 2016) about 27m domains, 4m brands, and over 50k companies.  It's important that our customers be able to easily bring up the domain or brand they care about.
 

@@ -1,6 +1,9 @@
+---
 title: Multiple Skype Accounts on OS X
 date: Tue September 9 2015
 author: Randy D. Wallace Jr.
+layout: post
+---
 
 It's been asked [many times](https://www.google.com/search?q=multiple%20skype%20accounts%20mac), but I was never quite satisfied with the answer, so I took what was out there and improved upon it a bit to serve my needs.
 

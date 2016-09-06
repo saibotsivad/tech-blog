@@ -1,0 +1,11 @@
+markdown: kramdown
+kramdown:
+  smart_quotes: [ "apos", "apos", "quot", "quot" ]
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+exclude: [ "Gemfile", "Gemfile.lock", "readme.md" ]
+name: "eDataSource Engineering"
+permalink: pretty
+description: "This is the developer blog for eDataSource, a company providing powerful email analytics."
+url: "http://enginering.edatasource.com"

@@ -1,6 +1,9 @@
+---
 title: WebSockets on the JVM
 date: Wed September 30 2015
 author: Andrew Smith
+layout: post
+---
 
 We had been tossing around the idea of using WebSockets in our app for quite some time now and with the lingering bonus of getting rid of IE 9 we decided to pull the trigger with our notification system.
 

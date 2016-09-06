@@ -1,5 +1,8 @@
+---
 title: Getting used to Mac development
 date: Thu Apr 30 2015 15:36:17 GMT-0500 (CDT)
+layout: post
+---
 
 Before starting at EDS, we were all Windows folks.  We're all pretty sold on OSX now, but there is an adjustment period where you have to figure out what incantations it takes to get the useful things that you're used to from Windows.
 
