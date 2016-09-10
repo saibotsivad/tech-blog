@@ -1,6 +1,5 @@
 ---
 title: Multiple Skype Accounts on OS X
-date: Tue September 9 2015
 author: Randy D. Wallace Jr.
 layout: post
 ---
@@ -21,7 +20,7 @@ this [Superuser post](http://superuser.com/questions/271646/multiple-skype-clien
 
 1. Track down `Automator`.  You can find this application either buried in the `Other` Folder in the Launchpad or via Spotlight.
 
-![Automator Image](/content/assets/skype-screenshot-automator.png)
+![Automator Image](/assets/skype-screenshot-automator.png)
 
 2. When asked to `Choose a type for your document`, select `Application`.
 
@@ -33,10 +32,11 @@ inside your User account's directory (i.e. /Users/<your_user_account_name>/Appli
 
 ## Step 3
 
-1. In Automator, track down the `Run Shell Script` Action and drag it over to the right.
-2. In the `Shell` dropdown, select `/bin/bash`.
-3. Inside the text entry box, copy and paste the text below, replacing `Personal` with whatever you would like.
-```
+* 1: In Automator, track down the `Run Shell Script` Action and drag it over to the right.
+* 2: In the `Shell` dropdown, select `/bin/bash`.
+* 3: Inside the text entry box, copy and paste the text below, replacing `Personal` with whatever you would like.
+
+```bash
 CUSTOM_SKYPE_DATA_FOLDER_NAME="Personal"
 
 DATA_PATH="/Users/$(whoami)/Library/Application Support/Skype ${CUSTOM_SKYPE_DATA_FOLDER_NAME}"
@@ -47,12 +47,12 @@ nohup open -na /Applications/Skype.app --args -DataPath "${DATA_PATH}" > /dev/nu
 
 exit 0
 ```
-4. At the bottom of the action window for `Run Shell Script` is an `Options` button.  Select that and check the box labeled `Ignore this action's input`.  It should look like this when you're done:
 
-![Run Shell Script Image](/content/assets/skype-screenshot-run-shell-script.png)
+* 4: At the bottom of the action window for `Run Shell Script` is an `Options` button.  Select that and check the box labeled `Ignore this action's input`.  It should look like this when you're done:
 
-5. Save!
+![Run Shell Script Image](/assets/skype-screenshot-run-shell-script.png)
 
+* 5: Save!
 
 ## Step 4
 
@@ -74,7 +74,7 @@ point, hit copy (Edit => Copy or CMD+C).
 
 ## Finishing up
 
-![Final Image](/content/assets/skype-screenshot-final.png)
+![Final Image](/assets/skype-screenshot-final.png)
 
 Well, that about wraps it up.  This has worked great for me, and I hope it does for you too.  Just create as many of these Automator Applications as you need, each with different `CUSTOM_SKYPE_DATA_FOLDER_NAME`'s and File Names, and 
 you should be able to run them all simultaneously.  Keep an eye on your resources though, I don't know what the fallout is from running more than 2 copies of Skype simultaneously!

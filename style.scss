@@ -1,106 +1,176 @@
 ---
 ---
 
-#sidebar {
-	float: left;
+/*
+Taken from: https://getbootstrap.com/examples/blog/
+*/
+
+/*
+ * Globals
+ */
+
+body {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #555;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+	margin-top: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	color: #333;
+}
+
+pre code {
+	white-space: pre;
+}
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+@media (min-width: 1200px) {
+	.container {
+	width: 970px;
+	}
+}
+
+
+/*
+ * Masthead for nav
+ */
+
+.blog-masthead {
+	background-color: #428bca;
+	-webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+			box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+/* Nav links */
+.blog-nav-item {
 	position: relative;
-	padding: 25px;
-	width: 300px;
+	display: inline-block;
+	padding: 10px;
+	font-weight: 500;
+	color: #cdddeb;
 }
-
-#main {
-	float: left;
-	padding: 20px;
-	margin: 10px;
-	width: 700px;
-}
-
-body {
-	float: left;
-	min-width: 1110px;
-	color: #141414;
-	background-color: #FAFAFA;
-}
-
-#sidebar ol {
-	padding: 0;
-}
-
-#sidebar li a {
+.blog-nav-item:hover,
+.blog-nav-item:focus {
+	color: #fff;
 	text-decoration: none;
 }
 
-#sidebar li {
-	border-bottom: thin solid rgba(55, 42, 26, 1);
-	margin: 20px 0px;
-	line-height: 1.05;
-	list-style-type: none;
+/* Active state gets a caret at the bottom */
+.blog-nav .active {
+	color: #fff;
 }
-
-h1 {
-	font-size: 1.6em;
-}
-
-div.post-content > h1 {
-	font-size: 1.4em;
-}
-
-h2 {
-	font-size: 1.1em;
-}
-
-h3 {
-	font-size: 1em;
-}
-
-h4 {
-	font-size: .8em;
-}
-
-body {
-	font-size: 1.3em;
-}
-
-img.logo {
-	display: block;
-	width: 120px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-div#edit-post-link {
+.blog-nav .active:after {
 	position: absolute;
-	top: 2em;
-	right: 0;
-	border: 0;
-	-webkit-transform: rotate(45deg);
-	-o-transform:rotate(45deg);
-	-moz-transform:rotate(45deg);
-	-ms-transform:rotate(45deg);
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	margin-left: -5px;
+	vertical-align: middle;
+	content: " ";
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid;
+	border-left: 5px solid transparent;
 }
 
-div#edit-post-link a {
-	text-decoration: none;
-	color: gray;
+
+/*
+ * Blog name and description
+ */
+
+.blog-header {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.blog-title {
+	margin-top: 30px;
+	margin-bottom: 0;
+	font-size: 60px;
+	font-weight: normal;
+}
+.blog-description {
+	font-size: 20px;
+	color: #999;
 }
 
-blockquote {
-	background-color: #ECECEC;
-	padding: 5px 30px;
-	border-radius: 5px;
-	margin: 10px 20px;
+
+/*
+ * Main column and sidebar layout
+ */
+
+.blog-main {
+	font-size: 18px;
+	line-height: 1.5;
 }
 
-code, pre {
-	font-family: "Monaco","Courier","monospace";
-	font-size: .8em;
+/* Sidebar modules for boxing content */
+.sidebar-module {
+	padding: 15px;
+	margin: 0 -15px 15px;
+}
+.sidebar-module-inset {
+	padding: 15px;
+	background-color: #f5f5f5;
+	border-radius: 4px;
+}
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+	margin-bottom: 0;
 }
 
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: auto;
-  height: auto;
-  border-radius: 10px;
+
+/* Pagination */
+.pager {
+	margin-bottom: 60px;
+	text-align: left;
+}
+.pager > li > a {
+	width: 140px;
+	padding: 10px 20px;
+	text-align: center;
+	border-radius: 30px;
+}
+
+
+/*
+ * Blog posts
+ */
+
+.blog-post {
+	margin-bottom: 60px;
+}
+.blog-post-title {
+	margin-bottom: 5px;
+	font-size: 40px;
+}
+.blog-post-meta {
+	margin-bottom: 20px;
+	color: #999;
+}
+
+
+/*
+ * Footer
+ */
+
+.blog-footer {
+	padding: 40px 0;
+	color: #999;
+	text-align: center;
+	background-color: #f9f9f9;
+	border-top: 1px solid #e5e5e5;
+}
+.blog-footer p:last-child {
+	margin-bottom: 0;
 }

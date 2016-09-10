@@ -1,6 +1,5 @@
 ---
 title: Getting used to Mac development
-date: Thu Apr 30 2015 15:36:17 GMT-0500 (CDT)
 layout: post
 ---
 

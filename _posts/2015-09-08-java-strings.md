@@ -8,7 +8,6 @@ During a recent big project we hired about a dozen contractors to do a lot of th
 work for us. While this has worked well, there have been a number of Java-based string manipulation issues
 that do not seem to be obvious, so I'm writing them down here.
 
-<a name="replace-all" />
 # Using `string.replaceAll` is slow
 
 If you read the JavaDocs you'll see that `String` has the method `String.replaceAll` which accepts regex, e.g.:
@@ -37,7 +36,6 @@ a slow process, and it can often be changed to this instead:
 
 ---
 
-<a name="matches" />
 # Using `string.matches` is slow
 
 For the same reason that the `string.replaceAll` is slow, the `string.matches` is also slow (the `Pattern` is compiled each time

@@ -1,41 +1,25 @@
 {% include header.html %}
 
-<header class="article">
-	<div class="site-logo">
-		<p class="text-muted">
-			<img src="/logo.svg" alt="Site logo image">
-			<a href="/" class="link-muted">&#10094; {{ site.name }}</a>
-		</p>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 blog-main">
+			<div class="blog-post">
+				<h2 class="blog-post-title">{{ page.title }}</h2>
+				{% if page.subtitle %}
+					<p class="blog-post-subtitle">{{ page.subtitle }}</p>
+				{% endif %}
+				<p class="blog-post-meta">
+					{{ page.date | date: "%B %-d, %Y" }}
+					by
+					{{ page.author }}
+				</p>
+				{{ content }}
+			</div>
+		</div>
+		<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+			{% include sidebar.html %}
+		</div>
 	</div>
-
-	{% if page.show_title != false %}
-		<h1>{{ page.title }}</h1>
-		<h2>{{ page.subtitle }}</h2>
-	{% endif %}
-
-	<p class="published text-muted">
-		{% if page.updated %}
-			Last updated {{ page.updated | date: "%Y-%m-%d" }}
-		{% else %}
-			Published {{ page.date | date: "%Y-%m-%d" }}
-		{% endif %}
-	</p>
-
-	{% if page.updated %}
-		<p class="published text-muted">
-			Originally published
-			{{ page.date | date: "%Y-%m-%d" }}
-		</p>
-	{% endif %}
-
-	<hr>
-</header>
-
-<section>
-	<article>
-		{{ content }}
-		<hr>
-	</article>
-</section>
+</div>
 
 {% include footer.html %}
