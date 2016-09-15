@@ -29,7 +29,11 @@ h6, .h6 {
 pre code {
 	white-space: pre;
 }
-
+pre {
+	-moz-tab-size: 2;
+	-o-tab-size: 2;
+	tab-size: 2;
+}
 /*
  * Override Bootstrap's default container.
  */

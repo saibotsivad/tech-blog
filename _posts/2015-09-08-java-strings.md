@@ -1,12 +1,14 @@
 ---
-title: Some random notes about Java Strings
+title: Notes about Java Strings
 author: Tobias Davis
 layout: post
 ---
 
-During a recent big project we hired about a dozen contractors to do a lot of the initial "heavy-lifting"
-work for us. While this has worked well, there have been a number of Java-based string manipulation issues
-that do not seem to be obvious, so I'm writing them down here.
+During a recent big project we hired about a dozen contractors to do
+a lot of the initial "heavy-lifting" work for us. While this has
+worked well, there have been a number of Java-based string manipulation
+issues that did not seem to be obvious to the contractors, so I
+wondered if maybe they weren't obvious to other people.
 
 # Using `string.replaceAll` is slow
 
