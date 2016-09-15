@@ -1,6 +1,8 @@
+---
 title: Making an autocomplete search that doesn't suck
-date: Tue Feb 09 2016 15:25:43 GMT-0600 (CST)
 author: Josh Duff
+layout: post
+---
 
 We index emails related to (as of February 2016) about 27m domains, 4m brands, and over 50k companies.  It's important that our customers be able to easily bring up the domain or brand they care about.
 
@@ -12,7 +14,7 @@ This is how we made our autocomplete searches excellent.
 
 So we have indexes of domain names and company names.  There are steps in determining what results you get back for a user's search string: filtering down to matching results, and then ordering the remaining list so that the most relevant are at the top.
 
-<img src="content/image/brand-autocomplete.png" width="195" height="203">
+![Brand Autocomplete Image](/assets/brand-autocomplete.png)
 
 See examples of our ElasticSearch schemas [here](https://gist.github.com/TehShrike/4dbc9fbad7243faae615).  As you can see, we give ourselves several different analyzed strings to use for searching.
 
@@ -64,7 +66,7 @@ If someone searches for "professional", we actually run a query that filters res
 
 All of the other optional queries are there for scoring purposes only, to hopefully make your results make more sense when you're searching for obscure domains without much data.
 
-<img src="content/image/domain-autocomplete.png" width="206" height="200">
+![Domain Autocomplete Image](/assets/domain-autocomplete.png)
 
 # Life lessons
 

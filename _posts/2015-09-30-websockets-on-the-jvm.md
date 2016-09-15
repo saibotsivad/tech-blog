@@ -1,6 +1,8 @@
+---
 title: WebSockets on the JVM
-date: Wed September 30 2015
 author: Andrew Smith
+layout: post
+---
 
 We had been tossing around the idea of using WebSockets in our app for quite some time now and with the lingering bonus of getting rid of IE 9 we decided to pull the trigger with our notification system.
 
@@ -14,7 +16,7 @@ After adding the artifacts to our build process I was able to stand up their "ch
 
 Our notifications system was the part of our system that we had chosen WebSockets to replace. Users receive events that happen elsewhere in the system (ie things completing in a background task, new modules enabled/disabled for users) and the UI display it to them in a nice list fashion. Our current implementation of this was a rest call that would "long poll" (Thread.sleep for a second at a time before checking again for a max of ~30s) our datasource until it found something it needed.  One main concern I had with this was that we were dedicating one of our HTTP worker threads to every user which doesn't scale as well as one would hope.  With the WebSocket implementation we would free up that worker thread to do other things and also have a dedicated channel to our user that we could push notifications to.
 
-Once we had our webserver successfully making persistent connections with clients the real fun started. We needed to choose a medium that we could send messages across JVMs, hopefully without getting into another "long poll" situation. Luckily Atmosphere came with many [extentions](https://github.com/Atmosphere/atmosphere-extensions) jms, jedis, jgroups, and hazelcast just to name a few. Redis and Hazelcast are two tools that we already use quite heavily in our environment. Because Hazelcast gives our sysops guy nightmares at night I decided to choose Redis for our JVM pubsub communication.
+Once we had our webserver successfully making persistent connections with clients the real fun started. We needed to choose a medium that we could send messages across JVMs, hopefully without getting into another "long poll" situation. Luckily Atmosphere came with many [extensions](https://github.com/Atmosphere/atmosphere-extensions) jms, jedis, jgroups, and hazelcast just to name a few. Redis and Hazelcast are two tools that we already use quite heavily in our environment. Because Hazelcast gives our sysops guy nightmares at night I decided to choose Redis for our JVM pubsub communication.
 
 After developing our broadcasters using Atmospheres Redis example I had things running very well and broadcasting messages from many different JVMs.
 
@@ -23,43 +25,40 @@ After a few iterations of frontend updates around our old notification code the 
 
 After researching some Jedis pubsub examples and looking at the HazelcastBroadcaster implementation I finally had a better idea on how subscribing to rooms within Redis.
 
-I extracted the JedisPubSub annoymous class into its own class in their example and then started the subscribe in a new thread.
+I extracted the JedisPubSub anonymous class into its own class in their example and then started the subscribe in a new thread.
 
-```
+```java
 this.subscriber = new JedisSubscriber(RedisUtil.this.callback);
-		new Thread() {
-			@Override
-			public void run() {
-				try {
-					RedisUtil.this.subscribeClient.subscribe(RedisUtil.this.subscriber, RedisUtil.this.callback.getID());
-					LOG.debug("Subscription ended for " + RedisUtil.this.callback.getID());
-
-				} catch (Throwable t) {
-					LOG.error("Error subscribing to redis channel", t);
-				}
-				RedisUtil.this.callback.subscriptionEnded();
-			};
-		}.start();
+new Thread() {
+	@Override
+	public void run() {
+		try {
+			RedisUtil.this.subscribeClient.subscribe(RedisUtil.this.subscriber, RedisUtil.this.callback.getID());
+			LOG.debug("Subscription ended for " + RedisUtil.this.callback.getID());
+		} catch (Throwable t) {
+			LOG.error("Error subscribing to redis channel", t);
+		}
+		RedisUtil.this.callback.subscriptionEnded();
+	};
+}.start();
 ```
 
  When this subscription ended (or threw an exception) I would then trigger a method on the Broadcaster callback that checked to see if I still had any resources still listening and if so re-subscribe.
  
- ```
-	private void refreshMessageListener() {
-		synchronized (this.redisUtil) {
-			if (getAtmosphereResources().size() > 0 && !this.redisUtil.isSubscriberConnected()) {
-				this.redisUtil.startSubscriber();
-
-				LOG.debug("Started redis subscriber on room " + getID());
-			} else if (getAtmosphereResources().size() == 0) {
-				this.redisUtil.stopSubscriber();
-
-				LOG.debug("Stoped redis subscriber on room " + getID());
-			} else if (LOG.isDebugEnabled()) {
-				LOG.debug("Did not add message listener because resources:" + getAtmosphereResources().size());
-			}
+```java
+private void refreshMessageListener() {
+	synchronized (this.redisUtil) {
+		if (getAtmosphereResources().size() > 0 && !this.redisUtil.isSubscriberConnected()) {
+			this.redisUtil.startSubscriber();
+			LOG.debug("Started redis subscriber on room " + getID());
+		} else if (getAtmosphereResources().size() == 0) {
+			this.redisUtil.stopSubscriber();
+			LOG.debug("Stoped redis subscriber on room " + getID());
+		} else if (LOG.isDebugEnabled()) {
+			LOG.debug("Did not add message listener because resources:" + getAtmosphereResources().size());
 		}
 	}
+}
 ```
 
 This same `refreshMessageListener` also got called any time an atmosphere resource was added or removed via the `addAtmosphereResource` and `removeAtmosphereResource` methods causing the subscription to never be stagnant or get tore down if no clients were wanting messages from that room.

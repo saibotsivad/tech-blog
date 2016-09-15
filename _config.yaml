@@ -1,0 +1,36 @@
+markdown: kramdown
+kramdown:
+  smart_quotes: [ "apos", "apos", "quot", "quot" ]
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+exclude: [ "Gemfile", "Gemfile.lock", "readme.md" ]
+name: "eDataSource Engineering"
+permalink: pretty
+description: "This is the developer blog for eDataSource, a company providing powerful email analytics."
+url: "http://engineering.edatasource.com"
+members:
+  - name: Chris Adams
+    url: https://github.com/cadams500
+  - name: Brandon Glesmann
+    url: https://github.com/brandonglesmann
+  - name: Randy Wallace
+    url: https://github.com/randywallace
+  - name: Dustin Lineweber
+    url: https://github.com/dustinlineweber
+  - name: Zachary Aschim
+    url: https://github.com/zaschim
+  - name: Lewis Sparlin
+    url: https://github.com/lsparlin
+  - name: Andrew Smith
+    url: https://github.com/smithaps89
+  - name: Tarryn Schantell
+    url: https://github.com/tschant
+  - name: Adam Howell
+    url: https://github.com/tucker19
+  - name: Alex Drake
+    url: https://github.com/amdrake93
+  - name: Dave Martin
+    url: https://github.com/dlmartin
+  - name: Neal Stanard
+    url: https://github.com/nstanard
